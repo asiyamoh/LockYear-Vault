@@ -15,7 +15,10 @@
     "build": "prisma generate && nest build",
     "build:staging": "prisma generate && NODE_ENV=staging nest build",
     "build:prod": "prisma generate && NODE_ENV=production nest build",
-    "lint": "eslint \"{src,test}/**/*.ts\""
+    "lint": "eslint \"{src,test}/**/*.ts\"",
+    "lint:fix": "eslint \"{src,test}/**/*.ts\" --fix",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "format:check": "prettier --check \"src/**/*.ts\""
   },
   "keywords": [],
   "author": "",

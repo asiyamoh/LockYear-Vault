@@ -29,10 +29,7 @@ interface CaptionProps extends React.HTMLAttributes<HTMLSpanElement> {
 
 export function Caption({ children, className, ...props }: CaptionProps) {
   return (
-    <span
-      className={clsx('text-xs text-text-muted', className)}
-      {...props}
-    >
+    <span className={clsx('text-xs text-text-muted', className)} {...props}>
       {children}
     </span>
   );

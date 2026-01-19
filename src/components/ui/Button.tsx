@@ -53,42 +53,51 @@ type ButtonProps = {
   children: React.ReactNode;
 } & Omit<Headless.ButtonProps, 'className' | 'children'>;
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
-  { variant = 'primary', size = 'md', className, children, loading, ...props },
-  ref
-) {
-  const classes = clsx(
-    className,
-    styles.base,
-    styles.variants[variant],
-    styles.sizes[size]
-  );
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  function Button(
+    {
+      variant = 'primary',
+      size = 'md',
+      className,
+      children,
+      loading,
+      ...props
+    },
+    ref
+  ) {
+    const classes = clsx(
+      className,
+      styles.base,
+      styles.variants[variant],
+      styles.sizes[size]
+    );
 
-  function renderChildrenWithLoading() {
-    return (
-      <>
-        {loading && (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin" />
+    function renderChildrenWithLoading() {
+      return (
+        <>
+          {loading && (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin" />
+            </div>
+          )}
+          <div className={clsx('contents', { invisible: loading })}>
+            {children}
           </div>
-        )}
-        <div className={clsx('contents', { invisible: loading })}>
-          {children}
-        </div>
-      </>
+        </>
+      );
+    }
+
+    return (
+      <Headless.Button
+        {...props}
+        className={classes}
+        ref={ref}
+        disabled={loading || props.disabled}
+      >
+        {renderChildrenWithLoading()}
+      </Headless.Button>
     );
   }
-
-  return (
-    <Headless.Button
-      {...props}
-      className={classes}
-      ref={ref}
-      disabled={loading || props.disabled}
-    >
-      {renderChildrenWithLoading()}
-    </Headless.Button>
-  );
-});
+);
 
 export default Button;

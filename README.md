@@ -1,10 +1,11 @@
 # LockYear Vault
 
-A secure vault application for 
+A secure vault application for
 
 ## Tech Stack
 
 ### Frontend
+
 - **Framework:** React 19.1.0
 - **Build Tool:** Vite 7.1.2
 - **Router:** TanStack Router 1.44.2
@@ -16,6 +17,7 @@ A secure vault application for
 - **Backend Client:** Supabase JS 2.75.0
 
 ### Backend (API)
+
 - **Framework:** NestJS 11.1.6
 - **Database ORM:** Prisma 6.15.0
 - **Database:** Supabase (PostgreSQL)
@@ -25,24 +27,28 @@ A secure vault application for
 ## Getting Started
 
 ### Prerequisites
-- Node.js 18+ 
+
+- Node.js 18+
 - npm or yarn
 - PostgreSQL (via Supabase)
 
 ### Installation
 
 1. Clone the repository
+
 ```bash
 git clone <repository-url>
 cd LockYear-Vault
 ```
 
 2. Install frontend dependencies
+
 ```bash
 npm install
 ```
 
 3. Install API dependencies
+
 ```bash
 cd api
 npm install
@@ -52,12 +58,14 @@ cd ..
 4. Set up environment variables
 
 Copy the example env files and fill in your values:
+
 ```bash
 cp .env.example .env
 cp api/.env.example api/.env
 ```
 
 5. Set up the database
+
 ```bash
 cd api
 npx prisma generate
@@ -68,11 +76,13 @@ cd ..
 ### Development
 
 Run the frontend:
+
 ```bash
 npm run dev
 ```
 
 Run the API (in a separate terminal):
+
 ```bash
 cd api
 npm run dev
@@ -83,11 +93,13 @@ The frontend will be available at `http://localhost:3000` and the API at `http:/
 ### Build
 
 Build the frontend:
+
 ```bash
 npm run build
 ```
 
 Build the API:
+
 ```bash
 cd api
 npm run build

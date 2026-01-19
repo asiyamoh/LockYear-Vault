@@ -32,14 +32,27 @@
     "build:staging": "tsc && vite build --mode staging",
     "build:prod": "tsc && vite build --mode production",
     "preview": "vite preview",
-    "generate": "npx @tanstack/router-cli generate"
+    "generate": "npx @tanstack/router-cli generate",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "lint:fix": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,css,md}\""
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.2",
     "@tanstack/router-plugin": "^1.44.3",
     "@types/node": "^20.19.11",
+    "@typescript-eslint/eslint-plugin": "^8.53.0",
+    "@typescript-eslint/parser": "^8.53.0",
     "@vitejs/plugin-react": "^5.0.0",
     "autoprefixer": "^10.4.21",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
     "postcss": "^8.5.6",
+    "prettier": "^3.8.0",
+    "typescript-eslint": "^8.53.0",
     "vite": "^7.1.2"
   }
 }

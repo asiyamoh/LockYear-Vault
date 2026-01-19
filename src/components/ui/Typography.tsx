@@ -22,10 +22,7 @@ export function Heading({
   };
 
   return (
-    <Component
-      className={clsx(variantClasses[variant], className)}
-      {...props}
-    >
+    <Component className={clsx(variantClasses[variant], className)} {...props}>
       {children}
     </Component>
   );
