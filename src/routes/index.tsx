@@ -1,13 +1,9 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, Navigate } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/')({
   component: Index,
 });
 
 function Index() {
-  return (
-    <div>
-      <h1>LockYear Vault</h1>
-    </div>
-  );
+  return <Navigate to="/dashboard" replace />;
 }
