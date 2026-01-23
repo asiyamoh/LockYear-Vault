@@ -2,26 +2,20 @@ import { DashboardLayout } from '../../components/layout/DashboardLayout';
 import { Card } from '../../components/ui/Card';
 import { PageHeader } from '../../components/ui/PageHeader';
 
-export function DashboardPage() {
+export function LegalSupportPage() {
   return (
     <DashboardLayout>
       <div className="space-y-6">
-        <PageHeader
-          title="Dashboard"
-          actions={[
-            { label: 'Lock Funds', to: '/lock-funds', variant: 'primary' },
-            { label: 'Add Deposit', to: '/add-deposit', variant: 'secondary' },
-          ]}
-        />
+        <PageHeader title="Legal & Support" />
 
         <Card variant="dark" padding="lg">
           <div className="text-center py-12">
             <h2 className="text-heading text-text-primary mb-4">
-              Dashboard Content Coming Soon
+              Legal & Support Center
             </h2>
             <p className="text-text-secondary">
-              This is where your locked balance, deposits, and activity will be
-              displayed.
+              This page will contain legal documents, terms of service, and
+              support resources.
             </p>
           </div>
         </Card>

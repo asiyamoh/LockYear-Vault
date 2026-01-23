@@ -2,14 +2,13 @@ import { DashboardLayout } from '../../components/layout/DashboardLayout';
 import { Card } from '../../components/ui/Card';
 import { PageHeader } from '../../components/ui/PageHeader';
 
-export function DashboardPage() {
+export function LockFundsPage() {
   return (
     <DashboardLayout>
       <div className="space-y-6">
         <PageHeader
-          title="Dashboard"
+          title="Lock Funds"
           actions={[
-            { label: 'Lock Funds', to: '/lock-funds', variant: 'primary' },
             { label: 'Add Deposit', to: '/add-deposit', variant: 'secondary' },
           ]}
         />
@@ -17,11 +16,10 @@ export function DashboardPage() {
         <Card variant="dark" padding="lg">
           <div className="text-center py-12">
             <h2 className="text-heading text-text-primary mb-4">
-              Dashboard Content Coming Soon
+              Lock Funds Feature
             </h2>
             <p className="text-text-secondary">
-              This is where your locked balance, deposits, and activity will be
-              displayed.
+              This page will contain the lock funds form and period selection.
             </p>
           </div>
         </Card>
