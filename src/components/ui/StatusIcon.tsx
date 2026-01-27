@@ -1,5 +1,4 @@
 import clsx from 'clsx';
-import React from 'react';
 
 interface StatusIconProps {
   variant: 'success' | 'error' | 'warning' | 'info';

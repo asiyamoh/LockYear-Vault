@@ -1,6 +1,8 @@
 import { DashboardLayout } from '../../components/layout/DashboardLayout';
-import { Card } from '../../components/ui/Card';
 import { PageHeader } from '../../components/ui/PageHeader';
+import { VaultSummaryCard } from './components/VaultSummaryCard';
+import { UpcomingLocksCard } from './components/UpcomingLocksCard';
+import { mockVaultData } from './mockData';
 
 export function DashboardPage() {
   return (
@@ -14,17 +16,17 @@ export function DashboardPage() {
           ]}
         />
 
-        <Card variant="dark" padding="lg">
-          <div className="text-center py-12">
-            <h2 className="text-heading text-text-primary mb-4">
-              Dashboard Content Coming Soon
-            </h2>
-            <p className="text-text-secondary">
-              This is where your locked balance, deposits, and activity will be
-              displayed.
-            </p>
-          </div>
-        </Card>
+        {/* Stacked Layout - Full Width with Horizontal Padding */}
+        <div className="space-y-6 px-8 lg:px-16">
+          {/* Vault Summary Card */}
+          <VaultSummaryCard vaultData={mockVaultData} />
+
+          {/* Upcoming Locks Card */}
+          <UpcomingLocksCard
+            locks={mockVaultData.upcomingLocks}
+            maxDisplay={4}
+          />
+        </div>
       </div>
     </DashboardLayout>
   );
