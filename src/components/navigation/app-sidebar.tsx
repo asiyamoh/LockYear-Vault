@@ -12,8 +12,8 @@ import {
   SidebarHeader,
   SidebarItem,
   SidebarSection,
-} from '../ui/Sidebar';
-import { Logo } from '../ui/Logo';
+} from '../ui/sidebar';
+import { Logo } from '../ui/logo';
 
 const navigationItems = [
   {
@@ -27,8 +27,8 @@ const navigationItems = [
     icon: LockClosedIcon,
   },
   {
-    name: 'Add Deposit',
-    to: '/add-deposit',
+    name: 'New Lock',
+    to: '/new-lock',
     icon: PlusCircleIcon,
   },
   {

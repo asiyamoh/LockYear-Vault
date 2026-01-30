@@ -9,13 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as NewLockRouteImport } from './routes/new-lock'
 import { Route as LockFundsRouteImport } from './routes/lock-funds'
 import { Route as LegalSupportRouteImport } from './routes/legal-support'
 import { Route as DashboardRouteImport } from './routes/dashboard'
-import { Route as AddDepositRouteImport } from './routes/add-deposit'
 import { Route as ActivityRouteImport } from './routes/activity'
 import { Route as IndexRouteImport } from './routes/index'
 
+const NewLockRoute = NewLockRouteImport.update({
+  id: '/new-lock',
+  path: '/new-lock',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LockFundsRoute = LockFundsRouteImport.update({
   id: '/lock-funds',
   path: '/lock-funds',
@@ -29,11 +34,6 @@ const LegalSupportRoute = LegalSupportRouteImport.update({
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AddDepositRoute = AddDepositRouteImport.update({
-  id: '/add-deposit',
-  path: '/add-deposit',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ActivityRoute = ActivityRouteImport.update({
@@ -50,66 +50,73 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/activity': typeof ActivityRoute
-  '/add-deposit': typeof AddDepositRoute
   '/dashboard': typeof DashboardRoute
   '/legal-support': typeof LegalSupportRoute
   '/lock-funds': typeof LockFundsRoute
+  '/new-lock': typeof NewLockRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/activity': typeof ActivityRoute
-  '/add-deposit': typeof AddDepositRoute
   '/dashboard': typeof DashboardRoute
   '/legal-support': typeof LegalSupportRoute
   '/lock-funds': typeof LockFundsRoute
+  '/new-lock': typeof NewLockRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/activity': typeof ActivityRoute
-  '/add-deposit': typeof AddDepositRoute
   '/dashboard': typeof DashboardRoute
   '/legal-support': typeof LegalSupportRoute
   '/lock-funds': typeof LockFundsRoute
+  '/new-lock': typeof NewLockRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/activity'
-    | '/add-deposit'
     | '/dashboard'
     | '/legal-support'
     | '/lock-funds'
+    | '/new-lock'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/activity'
-    | '/add-deposit'
     | '/dashboard'
     | '/legal-support'
     | '/lock-funds'
+    | '/new-lock'
   id:
     | '__root__'
     | '/'
     | '/activity'
-    | '/add-deposit'
     | '/dashboard'
     | '/legal-support'
     | '/lock-funds'
+    | '/new-lock'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ActivityRoute: typeof ActivityRoute
-  AddDepositRoute: typeof AddDepositRoute
   DashboardRoute: typeof DashboardRoute
   LegalSupportRoute: typeof LegalSupportRoute
   LockFundsRoute: typeof LockFundsRoute
+  NewLockRoute: typeof NewLockRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/new-lock': {
+      id: '/new-lock'
+      path: '/new-lock'
+      fullPath: '/new-lock'
+      preLoaderRoute: typeof NewLockRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lock-funds': {
       id: '/lock-funds'
       path: '/lock-funds'
@@ -129,13 +136,6 @@ declare module '@tanstack/react-router' {
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof DashboardRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/add-deposit': {
-      id: '/add-deposit'
-      path: '/add-deposit'
-      fullPath: '/add-deposit'
-      preLoaderRoute: typeof AddDepositRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/activity': {
@@ -158,10 +158,10 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ActivityRoute: ActivityRoute,
-  AddDepositRoute: AddDepositRoute,
   DashboardRoute: DashboardRoute,
   LegalSupportRoute: LegalSupportRoute,
   LockFundsRoute: LockFundsRoute,
+  NewLockRoute: NewLockRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

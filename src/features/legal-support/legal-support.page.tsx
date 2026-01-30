@@ -1,6 +1,6 @@
-import { DashboardLayout } from '../../components/layout/DashboardLayout';
-import { Card } from '../../components/ui/Card';
-import { PageHeader } from '../../components/ui/PageHeader';
+import { DashboardLayout } from '../../components/layout/dashboard-layout';
+import { Card } from '../../components/ui/card';
+import { PageHeader } from '../../components/ui/page-header';
 
 export function LegalSupportPage() {
   return (

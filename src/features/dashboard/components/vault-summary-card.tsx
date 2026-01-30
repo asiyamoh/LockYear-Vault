@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Card } from '../../../components/ui/Card';
-import { Countdown } from '../../../components/ui/Countdown';
+import { Card } from '../../../components/ui/card';
+import { Countdown } from '../../../components/ui/countdown';
 import { VaultSummary } from '../types';
 import { calculateCountdown, formatCurrency, formatDate } from '../formatters';
 

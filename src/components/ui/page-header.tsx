@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router';
-import { Button } from './Button';
-import { Card } from './Card';
+import { Button } from './button';
+import { Card } from './card';
 
 interface PageHeaderAction {
   label: string;

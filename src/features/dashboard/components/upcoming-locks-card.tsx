@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router';
-import { Card } from '../../../components/ui/Card';
-import { LockItem } from '../../../components/ui/LockItem';
+import { Card } from '../../../components/ui/card';
+import { LockItem } from '../../../components/ui/lock-item';
 import { Lock } from '../types';
 import { formatCurrency, formatDate } from '../formatters';
 

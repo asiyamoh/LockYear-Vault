@@ -1,7 +1,7 @@
-import { DashboardLayout } from '../../components/layout/DashboardLayout';
-import { PageHeader } from '../../components/ui/PageHeader';
-import { VaultSummaryCard } from './components/VaultSummaryCard';
-import { UpcomingLocksCard } from './components/UpcomingLocksCard';
+import { DashboardLayout } from '../../components/layout/dashboard-layout';
+import { PageHeader } from '../../components/ui/page-header';
+import { VaultSummaryCard } from './components/vault-summary-card';
+import { UpcomingLocksCard } from './components/upcoming-locks-card';
 import { mockVaultData } from './mockData';
 
 export function DashboardPage() {
@@ -12,7 +12,7 @@ export function DashboardPage() {
           title="Dashboard"
           actions={[
             { label: 'Lock Funds', to: '/lock-funds', variant: 'primary' },
-            { label: 'Add Deposit', to: '/add-deposit', variant: 'secondary' },
+            { label: 'New Lock', to: '/new-lock', variant: 'secondary' },
           ]}
         />
 

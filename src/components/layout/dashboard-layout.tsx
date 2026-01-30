@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { AppSidebar } from '../navigation/AppSidebar';
+import { AppSidebar } from '../navigation/app-sidebar';
 import clsx from 'clsx';
 
 interface DashboardLayoutProps {
