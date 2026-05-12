@@ -16,7 +16,12 @@ export function Countdown({
   className,
 }: CountdownProps) {
   return (
-    <div className={clsx('flex items-center justify-center gap-2', className)}>
+    <div
+      className={clsx(
+        'flex items-center justify-center gap-1 sm:gap-2',
+        className
+      )}
+    >
       <CountdownSegment value={days} label="Days" />
       <CountdownSeparator />
       <CountdownSegment value={hours} label="Hrs" />
@@ -36,10 +41,11 @@ interface CountdownSegmentProps {
 function CountdownSegment({ value, label }: CountdownSegmentProps) {
   return (
     <div className="flex flex-col items-center">
-      <div className="text-3xl font-bold text-text-primary tabular-nums">
+      {/* Number: smaller on mobile, full size on sm+ */}
+      <div className="text-xl sm:text-3xl font-bold text-text-primary tabular-nums">
         {String(value).padStart(2, '0')}
       </div>
-      <div className="text-xs text-text-muted uppercase tracking-wider">
+      <div className="text-[10px] sm:text-xs text-text-muted uppercase tracking-wider">
         {label}
       </div>
     </div>
@@ -47,7 +53,9 @@ function CountdownSegment({ value, label }: CountdownSegmentProps) {
 }
 
 function CountdownSeparator() {
-  return <div className="text-2xl text-text-muted font-bold">:</div>;
+  return (
+    <div className="text-lg sm:text-2xl text-text-muted font-bold mb-3">:</div>
+  );
 }
 
 export default Countdown;

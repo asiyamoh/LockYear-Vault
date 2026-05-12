@@ -5,10 +5,16 @@ import { Link } from '@tanstack/react-router';
 interface LogoProps {
   className?: string;
   showIcon?: boolean;
+  showText?: boolean;
   size?: 'sm' | 'md' | 'lg';
 }
 
-export function Logo({ className, showIcon = true, size = 'md' }: LogoProps) {
+export function Logo({
+  className,
+  showIcon = true,
+  showText = true,
+  size = 'md',
+}: LogoProps) {
   const sizeClasses = {
     sm: 'text-lg',
     md: 'text-xl',
@@ -39,14 +45,16 @@ export function Logo({ className, showIcon = true, size = 'md' }: LogoProps) {
           />
         </div>
       )}
-      <span
-        className={clsx(
-          sizeClasses[size],
-          'font-bold text-text-primary tracking-tight'
-        )}
-      >
-        Lock<span className="text-green-primary">Year</span>
-      </span>
+      {showText && (
+        <span
+          className={clsx(
+            sizeClasses[size],
+            'font-bold text-text-primary tracking-tight'
+          )}
+        >
+          Lock<span className="text-green-primary">Year</span>
+        </span>
+      )}
     </Link>
   );
 }

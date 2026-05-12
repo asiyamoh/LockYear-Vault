@@ -15,18 +15,22 @@ export function DashboardLayout({
 }: DashboardLayoutProps) {
   return (
     <div className="min-h-screen w-full bg-bg-primary">
-      <div className="flex gap-6 p-4 max-w-[1920px] mx-auto">
-        {/* Left Sidebar Navigation */}
+      <div className="flex max-w-[1920px] mx-auto gap-4 lg:gap-6 p-3 md:p-4">
+        {/* Sidebar — hides itself on mobile, icon-only on tablet, full on desktop */}
         <aside className="flex-shrink-0">
           <AppSidebar />
         </aside>
 
-        {/* Main Content Area */}
-        <main className={clsx('flex-1 min-w-0', className)}>{children}</main>
+        {/* Main content */}
+        <main className={clsx('flex-1 min-w-0 pb-20 md:pb-4', className)}>
+          {children}
+        </main>
 
-        {/* Right Panel (Optional - for forms, etc.) */}
+        {/* Optional right panel */}
         {rightPanel && (
-          <aside className="flex-shrink-0 w-[350px]">{rightPanel}</aside>
+          <aside className="flex-shrink-0 w-[350px] hidden xl:block">
+            {rightPanel}
+          </aside>
         )}
       </div>
     </div>

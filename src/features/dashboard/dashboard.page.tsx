@@ -7,7 +7,7 @@ import { mockVaultData } from './mockData';
 export function DashboardPage() {
   return (
     <DashboardLayout>
-      <div className="space-y-6">
+      <div className="space-y-4 md:space-y-6">
         <PageHeader
           title="Dashboard"
           actions={[
@@ -16,12 +16,9 @@ export function DashboardPage() {
           ]}
         />
 
-        {/* Stacked Layout - Full Width with Horizontal Padding */}
-        <div className="space-y-6 px-8 lg:px-16">
-          {/* Vault Summary Card */}
+        {/* Cards — no side padding on mobile, modest padding on tablet, more on desktop */}
+        <div className="space-y-4 md:space-y-6 px-0 md:px-4 lg:px-8">
           <VaultSummaryCard vaultData={mockVaultData} />
-
-          {/* Upcoming Locks Card */}
           <UpcomingLocksCard
             locks={mockVaultData.upcomingLocks}
             maxDisplay={4}

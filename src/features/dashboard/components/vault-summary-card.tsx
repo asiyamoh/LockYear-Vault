@@ -13,41 +13,40 @@ export function VaultSummaryCard({ vaultData }: VaultSummaryCardProps) {
     calculateCountdown(vaultData.nextUnlockDate)
   );
 
-  // Update countdown every second
   useEffect(() => {
     const interval = setInterval(() => {
       setCountdown(calculateCountdown(vaultData.nextUnlockDate));
     }, 1000);
-
     return () => clearInterval(interval);
   }, [vaultData.nextUnlockDate]);
 
   return (
-    <Card variant="dark" padding="lg" className="h-full">
-      {/* Header */}
-      <div className="mb-12">
-        <h2 className="text-2xl font-semibold text-text-primary">Your Vault</h2>
+    <Card variant="dark" padding="md" className="h-full">
+      {/* Header — less bottom margin on mobile */}
+      <div className="mb-6 md:mb-10">
+        <h2 className="text-xl md:text-2xl font-semibold text-text-primary">
+          Your Vault
+        </h2>
       </div>
 
-      {/* Total Balance Section - Hero */}
-      <div className="text-center mb-16">
-        <p className="text-sm text-text-muted uppercase tracking-wider mb-3">
+      {/* Balance — hero number scales down on mobile */}
+      <div className="text-center mb-8 md:mb-14">
+        <p className="text-xs sm:text-sm text-text-muted uppercase tracking-wider mb-2 md:mb-3">
           Total Locked Balance
         </p>
-        <h3 className="text-6xl md:text-7xl font-bold text-text-primary mb-2 tabular-nums">
+        <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-text-primary tabular-nums">
           {formatCurrency(vaultData.totalBalance)}
         </h3>
       </div>
 
-      {/* Hairline Divider */}
-      <div className="border-t border-border-dark mb-16"></div>
+      {/* Divider */}
+      <div className="border-t border-border-dark mb-8 md:mb-14" />
 
-      {/* Next Unlock Section */}
+      {/* Next Unlock */}
       <div className="max-w-2xl mx-auto">
-        <div className="flex items-center justify-center gap-3 mb-6">
-          {/* Professional Outlined Hourglass Icon */}
+        <div className="flex items-center justify-center gap-2 md:gap-3 mb-4 md:mb-6">
           <svg
-            className="w-8 h-8 text-green-primary"
+            className="w-6 h-6 md:w-8 md:h-8 text-green-primary flex-shrink-0"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -60,22 +59,22 @@ export function VaultSummaryCard({ vaultData }: VaultSummaryCardProps) {
             />
           </svg>
           <div className="text-center">
-            <p className="text-xs text-text-muted uppercase tracking-wider mb-1">
+            <p className="text-[10px] sm:text-xs text-text-muted uppercase tracking-wider mb-1">
               Next Unlock
             </p>
-            <h4 className="text-xl font-semibold text-text-primary">
+            <h4 className="text-base sm:text-lg md:text-xl font-semibold text-text-primary">
               {formatDate(vaultData.nextUnlockDate)}
             </h4>
           </div>
         </div>
 
-        {/* Countdown Display */}
+        {/* Countdown — mt tightened on mobile */}
         <Countdown
           days={countdown.days}
           hours={countdown.hours}
           minutes={countdown.minutes}
           seconds={countdown.seconds}
-          className="mt-8"
+          className="mt-4 md:mt-8"
         />
       </div>
     </Card>

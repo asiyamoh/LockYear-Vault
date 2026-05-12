@@ -17,29 +17,28 @@ export function UpcomingLocksCard({
   const hasMore = locks.length > maxDisplay;
 
   return (
-    <Card variant="dark" padding="lg" className="h-full">
+    <Card variant="dark" padding="md" className="h-full">
       {/* Header */}
-      <div className="mb-8">
-        <h2 className="text-2xl font-semibold text-text-primary">
+      <div className="mb-5 md:mb-8">
+        <h2 className="text-xl md:text-2xl font-semibold text-text-primary">
           Upcoming Unlocks
         </h2>
-        <p className="text-sm text-text-muted mt-2">
+        <p className="text-sm text-text-muted mt-1 md:mt-2">
           {locks.length} {locks.length === 1 ? 'lock' : 'locks'} scheduled
         </p>
       </div>
 
-      {/* Hairline Divider */}
-      <div className="border-t border-border-dark mb-8"></div>
+      {/* Divider */}
+      <div className="border-t border-border-dark mb-5 md:mb-8" />
 
-      {/* Locks List */}
-      <div className="space-y-4">
+      {/* Locks List — tighter spacing on mobile */}
+      <div className="space-y-3 md:space-y-4">
         {displayedLocks.map(lock => (
           <LockItem
             key={lock.id}
             icon={
-              // Professional Outlined Lock Icon
               <svg
-                className="w-6 h-6"
+                className="w-5 h-5 md:w-6 md:h-6"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -59,10 +58,10 @@ export function UpcomingLocksCard({
         ))}
       </div>
 
-      {/* View All Link */}
+      {/* View All */}
       {hasMore && (
         <>
-          <div className="border-t border-border-dark mt-8 mb-6"></div>
+          <div className="border-t border-border-dark mt-5 md:mt-8 mb-4 md:mb-6" />
           <Link
             to="/lock-funds"
             className="block w-full text-center text-green-primary hover:text-green-hover font-medium text-sm transition-colors uppercase tracking-wider"

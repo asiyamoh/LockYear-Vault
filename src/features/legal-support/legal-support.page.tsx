@@ -8,11 +8,19 @@ import { SupportContactSection } from './sections/support-contact-section';
 import { LegalDocsSection } from './sections/legal-docs-section';
 
 const tabs: TabConfig[] = [
-  { id: 'how-it-works', label: 'How LockYear Works' },
-  { id: 'your-funds', label: 'Your Funds & Protections' },
-  { id: 'access-rules', label: 'Access Rules' },
-  { id: 'support', label: 'Support & Contact' },
-  { id: 'legal-docs', label: 'Legal Documents' },
+  {
+    id: 'how-it-works',
+    label: 'How LockYear Works',
+    shortLabel: 'How It Works',
+  },
+  {
+    id: 'your-funds',
+    label: 'Your Funds & Protections',
+    shortLabel: 'Your Funds',
+  },
+  { id: 'access-rules', label: 'Access Rules', shortLabel: 'Access' },
+  { id: 'support', label: 'Support & Contact', shortLabel: 'Support' },
+  { id: 'legal-docs', label: 'Legal Documents', shortLabel: 'Legal Docs' },
 ];
 
 export function LegalSupportPage() {
