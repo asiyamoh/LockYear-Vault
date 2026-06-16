@@ -2,7 +2,7 @@ import { formatCurrency, formatDate } from '../../dashboard/formatters';
 
 interface LockFundsSummaryProps {
   totalLocked: number;
-  nextUnlock: Date;
+  nextUnlock: Date | null;
 }
 
 export function LockFundsSummary({
@@ -37,7 +37,10 @@ export function LockFundsSummary({
             d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
           />
         </svg>
-        <span className="text-sm">Next Unlock: {formatDate(nextUnlock)}</span>
+        <span className="text-sm">
+          Next Unlock:{' '}
+          {nextUnlock ? formatDate(nextUnlock) : 'No upcoming unlocks'}
+        </span>
       </div>
     </div>
   );
