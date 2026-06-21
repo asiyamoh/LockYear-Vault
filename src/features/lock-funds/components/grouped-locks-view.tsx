@@ -17,9 +17,9 @@ export function GroupedLocksView({ groups }: GroupedLocksViewProps) {
 
       {/* Grouped Lock Cards */}
       <div className="space-y-4">
-        {groups.map((group, index) => (
+        {groups.map(group => (
           <GroupedLockCard
-            key={index}
+            key={group.period}
             period={group.period}
             totalAmount={group.totalAmount}
             unlockDate={group.unlockDate}

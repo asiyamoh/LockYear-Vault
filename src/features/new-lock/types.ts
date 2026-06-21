@@ -25,5 +25,4 @@ export interface DepositContextType {
 
   // Actions
   resetDeposit: () => void;
-  confirmDeposit: () => void;
 }

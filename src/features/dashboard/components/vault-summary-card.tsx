@@ -10,15 +10,22 @@ interface VaultSummaryCardProps {
 
 export function VaultSummaryCard({ vaultData }: VaultSummaryCardProps) {
   const [countdown, setCountdown] = useState(
-    calculateCountdown(vaultData.nextUnlockDate)
+    calculateCountdown(vaultData.nextUnlockDate ?? new Date()),
   );
 
   useEffect(() => {
+    if (!vaultData.nextUnlockDate) {
+      return;
+    }
+
     const interval = setInterval(() => {
-      setCountdown(calculateCountdown(vaultData.nextUnlockDate));
+      setCountdown(calculateCountdown(vaultData.nextUnlockDate!));
     }, 1000);
+
     return () => clearInterval(interval);
   }, [vaultData.nextUnlockDate]);
+
+  const hasUpcomingUnlock = vaultData.nextUnlockDate !== null;
 
   return (
     <Card variant="dark" padding="md" className="h-full">
@@ -63,19 +70,22 @@ export function VaultSummaryCard({ vaultData }: VaultSummaryCardProps) {
               Next Unlock
             </p>
             <h4 className="text-base sm:text-lg md:text-xl font-semibold text-text-primary">
-              {formatDate(vaultData.nextUnlockDate)}
+              {hasUpcomingUnlock
+                ? formatDate(vaultData.nextUnlockDate!)
+                : 'No upcoming unlocks'}
             </h4>
           </div>
         </div>
 
-        {/* Countdown — mt tightened on mobile */}
-        <Countdown
-          days={countdown.days}
-          hours={countdown.hours}
-          minutes={countdown.minutes}
-          seconds={countdown.seconds}
-          className="mt-4 md:mt-8"
-        />
+        {hasUpcomingUnlock && (
+          <Countdown
+            days={countdown.days}
+            hours={countdown.hours}
+            minutes={countdown.minutes}
+            seconds={countdown.seconds}
+            className="mt-4 md:mt-8"
+          />
+        )}
       </div>
     </Card>
   );

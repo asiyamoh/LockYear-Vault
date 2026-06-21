@@ -1,20 +1,63 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
-// Add your models here
-// Example:
-// model User {
-//   id        String   @id @default(uuid())
-//   email     String   @unique
-//   name      String?
-//   createdAt DateTime @default(now())
-//   updatedAt DateTime @updatedAt
-// }
+enum LockStatus {
+  PENDING_CONFIRMATION
+  LOCKED
+  MATURED
+  WITHDRAWN
+}
+
+enum LedgerEventType {
+  LOCK_CREATED
+  LOCK_CONFIRMED
+  LOCK_MATURED
+}
+
+model DemoUser {
+  id           String   @id @default(uuid())
+  createdAt    DateTime @default(now())
+  hasSeenIntro Boolean  @default(false)
+  isDemo       Boolean  @default(true)
+
+  locks        Lock[]
+  ledgerEvents LedgerEvent[]
+}
+
+model Lock {
+  id          String     @id @default(uuid())
+  userId      String
+  amountCents Int
+  unlockAt    DateTime
+  status      LockStatus @default(PENDING_CONFIRMATION)
+  createdAt   DateTime   @default(now())
+
+  user         DemoUser      @relation(fields: [userId], references: [id])
+  ledgerEvents LedgerEvent[]
+
+  @@index([userId])
+  @@index([userId, status])
+}
+
+model LedgerEvent {
+  id          String          @id @default(uuid())
+  userId      String
+  lockId      String?
+  eventType   LedgerEventType
+  amountCents Int?
+  metadata    Json            @default("{}")
+  createdAt   DateTime        @default(now())
+
+  user DemoUser @relation(fields: [userId], references: [id])
+  lock Lock?    @relation(fields: [lockId], references: [id])
+
+  @@index([userId])
+  @@index([lockId])
+}

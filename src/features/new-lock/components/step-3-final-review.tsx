@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   Card,
   CardHeader,
@@ -5,12 +6,16 @@ import {
   CardActions,
 } from '../../../components/ui/card';
 import { Button } from '../../../components/ui/button';
+import { Spinner } from '../../../components/ui/spinner';
 import { useDeposit } from '../context/deposit-context';
+import { useCreateLock } from '../../locks/hooks/use-create-lock';
 import { formatCurrency, formatDate } from '../../dashboard/formatters';
 
 export function Step3FinalReview() {
-  const { formData, prevStep, confirmDeposit, setShowCancelWarning } =
+  const { formData, prevStep, setShowSuccessModal, setShowCancelWarning } =
     useDeposit();
+  const createLock = useCreateLock();
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const handleBack = () => {
     prevStep();
@@ -20,8 +25,26 @@ export function Step3FinalReview() {
     setShowCancelWarning(true);
   };
 
-  const handleConfirm = () => {
-    confirmDeposit();
+  const handleConfirm = async () => {
+    if (!formData.amount || !formData.unlockDate) {
+      return;
+    }
+
+    setSubmitError(null);
+
+    try {
+      await createLock.mutateAsync({
+        amount: formData.amount,
+        unlockDate: formData.unlockDate,
+      });
+      setShowSuccessModal(true);
+    } catch (error) {
+      setSubmitError(
+        error instanceof Error
+          ? error.message
+          : 'Failed to create lock. Please try again.',
+      );
+    }
   };
 
   return (
@@ -63,14 +86,35 @@ export function Step3FinalReview() {
             </span>
           </div>
         </div>
+
+        {submitError && (
+          <div className="p-4 rounded-lg bg-error/10 border border-error/20">
+            <p className="text-sm text-error">{submitError}</p>
+          </div>
+        )}
       </CardContent>
 
       <CardActions>
-        <Button variant="secondary" onClick={handleCancel}>
+        <Button
+          variant="secondary"
+          onClick={handleCancel}
+          disabled={createLock.isPending}
+        >
           Cancel
         </Button>
-        <Button variant="primary" onClick={handleConfirm}>
-          Confirm Deposit
+        <Button
+          variant="primary"
+          onClick={handleConfirm}
+          disabled={createLock.isPending}
+        >
+          {createLock.isPending ? (
+            <span className="inline-flex items-center gap-2">
+              <Spinner size="sm" color="white" />
+              Confirming...
+            </span>
+          ) : (
+            'Confirm Deposit'
+          )}
         </Button>
       </CardActions>
     </Card>

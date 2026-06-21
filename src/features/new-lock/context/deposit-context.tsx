@@ -75,12 +75,6 @@ export function DepositProvider({ children }: { children: React.ReactNode }) {
     setShowCancelWarning(false);
   }, []);
 
-  const confirmDeposit = useCallback(() => {
-    // This is where you'll add backend integration later
-    // For now, just show success modal
-    setShowSuccessModal(true);
-  }, []);
-
   const value: DepositContextType = {
     formData,
     updateFormData,
@@ -94,7 +88,6 @@ export function DepositProvider({ children }: { children: React.ReactNode }) {
     showCancelWarning,
     setShowCancelWarning,
     resetDeposit,
-    confirmDeposit,
   };
 
   return (

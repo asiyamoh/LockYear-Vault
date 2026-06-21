@@ -16,20 +16,20 @@ export interface GroupedLock {
 
 export interface LocksGroupedView {
   totalLocked: number;
-  nextUnlock: Date;
+  nextUnlock: Date | null;
   groups: GroupedLock[];
 }
 
 export interface LocksIndividualView {
   totalLocked: number;
-  nextUnlock: Date;
+  nextUnlock: Date | null;
   locks: Lock[];
 }
 
 // For backwards compatibility with dashboard
 export interface VaultSummary {
   totalBalance: number;
-  nextUnlockDate: Date;
+  nextUnlockDate: Date | null;
   upcomingLocks: Lock[];
 }
 
