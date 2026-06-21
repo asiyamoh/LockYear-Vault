@@ -1,8 +1,6 @@
 import 'reflect-metadata';
 import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import { ExpressAdapter } from '@nestjs/platform-express';
-import express from 'express';
 import { AppModule } from './app.module';
 
 function configureApp(app: INestApplication): void {
@@ -34,19 +32,4 @@ async function bootstrap(): Promise<void> {
   console.log(`Application is running on: http://localhost:${port}`);
 }
 
-export async function initializeServerlessApp(
-  expressApp: express.Express,
-): Promise<void> {
-  const app = await NestFactory.create(
-    AppModule,
-    new ExpressAdapter(expressApp),
-  );
-
-  configureApp(app);
-
-  await app.init();
-}
-
-if (require.main === module) {
-  bootstrap();
-}
+bootstrap();
